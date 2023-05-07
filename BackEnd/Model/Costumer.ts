@@ -1,4 +1,4 @@
-interface Customer {
+interface Costumer {
     c_name: string;
     c_id: number;
     c_mail: string;
@@ -8,3 +8,4 @@ interface Customer {
     c_wallet: number;
     c_isadmin: boolean;
   }
+  export default Costumer

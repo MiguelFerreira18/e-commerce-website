@@ -4,7 +4,7 @@ import costumerRoutes from "../routes/costumerRoutes";
 
 
 const app: Express = express();
-const port = 80;
+const port = 3000;
 app.use(bodyParser.json())
 
 app.get('/', (req: Request, res: Response) => {

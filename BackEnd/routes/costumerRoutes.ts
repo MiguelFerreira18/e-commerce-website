@@ -1,5 +1,5 @@
 import express, { Express, Request, Response } from 'express';
-
+import CostumerControllerActions from '../Controller/CostumerController'
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -10,11 +10,10 @@ router.get('/', (req, res) => {
 //CRUD FOR COSTUMERS
 
 //CREATE
-router.post('/', function (req:Request, res:Response) {
-  res.send('POST request to the homepage')
-})
+router.post('/create',CostumerControllerActions.addCostumer);
 
 //READ
+router.get('/read',CostumerControllerActions.getCostumers);
 
 //UPDATE
 
