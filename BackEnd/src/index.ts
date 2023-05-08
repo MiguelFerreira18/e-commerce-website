@@ -1,6 +1,7 @@
 import express, { Express, Request, Response } from 'express';
 import bodyParser from "body-parser";
 import costumerRoutes from "../routes/costumerRoutes";
+import productTagRoutes from "../routes/ProductTagRoutes";
 
 
 const app: Express = express();
@@ -12,6 +13,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.use("/costumer",costumerRoutes);
+app.use("/productTag",productTagRoutes);
 
 
 app.listen(port, () => {
