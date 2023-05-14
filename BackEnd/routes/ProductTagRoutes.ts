@@ -9,14 +9,10 @@ router.get('/', (req, res) => {
 });
 
 //CRUD FOR PRODUCTTAGS
-//CREATE
-router.post('/create',ProdcutTagController.addProductTag);
-//READ
-router.get('/read',ProdcutTagController.getProductTags);
-router.get('/read/:productTagId',ProdcutTagController.getProductTagById);
-//UPDATE
-router.put('/update/:productTagId',ProdcutTagController.updateProductTag);
-//DELETE
-router.delete('/delete/:productTagId',ProdcutTagController.deleteProductTag);
+router.post('/create',ProdcutTagController.addProductTag); //CREATE
+router.get('/read',ProdcutTagController.getProductTags); //READ ALL
+router.get('/read/:productTagId',ProdcutTagController.getProductTagById); //READ ONE
+router.put('/update/:productTagId',ProdcutTagController.updateProductTag); //UPDATE
+router.delete('/delete/:productTagId',ProdcutTagController.deleteProductTag); //DELETE
 
 export default router;

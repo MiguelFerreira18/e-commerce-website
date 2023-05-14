@@ -1,4 +1,7 @@
+//Detalhe especifico do hardware
 interface Specification{
-    s_id:number,
-    s_title:string
+    id:number,
+    title:string
 }
+
+export default Specification;

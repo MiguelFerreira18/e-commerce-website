@@ -1,6 +1,9 @@
+//Conjunto de detalhes do hardware
 interface Specifications {
-    specs_id:number,
-    specs_text:string,
-    specs_p_id:number,
-    specs_s_id:number
+    id:number,
+    text:string,
+    productId:number,
+    detailId:number
 }
+
+export default Specifications

@@ -10,6 +10,17 @@ interface ProductTagController {
   deleteProductTag(req: any, res: any): Promise<void>;
 }
 
+interface ProductTagItem{
+    id:number,
+    tag:string,
+}
+const mapToRowProductItem = (row: any[]): ProductTagItem =>{
+    return {
+        id: row[0],
+        tag: row[1],
+    };
+}
+
 const productTagControllerActions: ProductTagController = {
   async getProductTags(req: any, res: any): Promise<void> {
     try {
@@ -18,13 +29,7 @@ const productTagControllerActions: ProductTagController = {
         text: "SELECT * FROM producttag;",
       });
       const productTagsResult = await productTagsPromise;
-      const productTagsList = productTagsResult.rows.map((row) => {
-        console.log(row);
-        return {
-          ptag_id: row[0],
-          ptag_tag: row[1],
-        };
-      });
+      const productTagsList = productTagsResult.rows.map(mapToRowProductItem);
       res.status(200).send(productTagsList);
     } catch (error) {
       console.error(error);
@@ -39,14 +44,7 @@ const productTagControllerActions: ProductTagController = {
             values: [req.params.productTagId],
         });
         const productTagResult = await productTagPromise;
-        const productTag = productTagResult.rows.map((row) => {
-            console.log(row);
-            return {
-                ptag_id: row[0],
-                ptag_tag: row[1],
-            };
-        }
-        );
+        const productTag = productTagResult.rows.map(mapToRowProductItem);
         res.status(200).send(productTag);
     } catch (error) {
       console.error(error);
@@ -59,7 +57,7 @@ const productTagControllerActions: ProductTagController = {
         const addProductTagPromise = db.query({
             rowMode: "array",
             text: "INSERT INTO producttag (ptag_tag) VALUES ($1);",
-            values: [productTag.ptag_tag],
+            values: [productTag.tag],
         });
         const addProductTagResult = await addProductTagPromise;
         res.status(201).send("ProductTag added successfully" + addProductTagPromise);
@@ -71,12 +69,11 @@ const productTagControllerActions: ProductTagController = {
   async updateProductTag(req: any, res: any): Promise<void> {
     try{
         const productTag: ProductTag = req.body;
-        const updateProductTagPromise = db.query({
+        const updateProductTagResult =await db.query({
             rowMode: "array",
             text: "UPDATE producttag SET ptag_tag = $1 WHERE ptag_id = $2;",
-            values: [productTag.ptag_tag, req.params.productTagId],
+            values: [productTag.tag, req.params.productTagId],
         });
-        const updateProductTagResult = await updateProductTagPromise;
         res.status(200).send("ProductTag updated successfully");
     }catch(error){
         console.error(error);
@@ -85,12 +82,11 @@ const productTagControllerActions: ProductTagController = {
   },
   async deleteProductTag(req: any, res: any): Promise<void> {
     try{
-        const deleteProductTagPromise = db.query({
+        const deleteProductTagResult = await db.query({
             rowMode: "array",
             text: "DELETE FROM producttag WHERE ptag_id = $1;",
             values: [req.params.productTagId],
         });
-        const deleteProductTagResult = await deleteProductTagPromise;
         res.status(200).send("ProductTag deleted successfully");
     }catch(error){
         console.error(error);

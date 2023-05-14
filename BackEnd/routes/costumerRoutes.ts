@@ -8,16 +8,11 @@ router.get('/', (req, res) => {
 );
 
 //CRUD FOR COSTUMERS
-
-//CREATE
-router.post('/create',CustomerControllerActions.addCustomer);
-//READ
-router.get('/read',CustomerControllerActions.getCustomers);
-router.get('/read/:customerId',CustomerControllerActions.getCustomerById);
-//UPDATE
-router.put('/update/:customerId',CustomerControllerActions.updateCustomer);
-//DELETE
-router.delete('/delete/:customerId',CustomerControllerActions.deleteCustomer);
+router.post('/create',CustomerControllerActions.addCustomer); //CREATE
+router.get('/read',CustomerControllerActions.getCustomers); //READ ALL
+router.get('/read/:customerId',CustomerControllerActions.getCustomerById); //READ ONE
+router.put('/update/:customerId',CustomerControllerActions.updateCustomer); //UPDATE
+router.delete('/delete/:customerId',CustomerControllerActions.deleteCustomer); //DELETE
 
 
 export default router;
